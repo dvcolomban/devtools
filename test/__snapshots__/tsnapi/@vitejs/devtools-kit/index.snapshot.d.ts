@@ -24,6 +24,7 @@ export interface DevToolsPluginOptions {
 export interface DevToolsViewJsonRender extends DevframeDockEntryBase {
   type: 'json-render';
   ui: JsonRenderer;
+  clientScript?: ClientScriptEntry;
 }
 export interface DevToolsViewLauncher extends DevframeViewLauncher {
   launcher: DevframeViewLauncher['launcher'] & {

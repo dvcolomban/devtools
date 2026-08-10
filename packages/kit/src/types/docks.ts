@@ -1,8 +1,9 @@
-import type { DevframeDockEntryBase, DevframeDockEntryCategory, DevframeViewLauncher } from '@devframes/hub/types'
+import type { ClientScriptEntry, DevframeDockEntryBase, DevframeDockEntryCategory, DevframeViewLauncher } from '@devframes/hub/types'
 import type { JsonRenderer } from './json-render'
 
+export type { ClientScriptEntry }
+
 export type {
-  ClientScriptEntry,
   DevframeDockActivation as DevToolsDockActivation,
   DevframeDockEntriesGrouped as DevToolsDockEntriesGrouped,
   DevframeDockEntry as DevToolsDockEntry,
@@ -37,6 +38,8 @@ export interface DevToolsViewJsonRender extends DevframeDockEntryBase {
   type: 'json-render'
   /** The renderer handle created by `ctx.createJsonRenderer()`. */
   ui: JsonRenderer
+  /** Optional client script run when this dock is selected, mirroring `iframe`'s {@link ClientScriptEntry}. */
+  clientScript?: ClientScriptEntry
 }
 
 declare module '@devframes/hub/types' {

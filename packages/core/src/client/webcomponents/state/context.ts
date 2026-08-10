@@ -206,6 +206,7 @@ export async function createDocksContext(
       (entry.type === 'action')
       || (entry.type === 'custom-render')
       || (entry.type === 'iframe' && entry.clientScript)
+      || (entry.type === 'json-render' && entry.clientScript)
     ) {
       const current = dockEntryStateMap.get(id)!
       const messagesClient = createClientMessagesClient(rpc)

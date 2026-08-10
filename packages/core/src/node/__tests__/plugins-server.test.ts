@@ -1,4 +1,4 @@
-import type { DevToolsDockEntry } from '@vitejs/devtools-kit'
+import type { DevToolsDockEntry, JsonRenderer } from '@vitejs/devtools-kit'
 import { describe, expect, it } from 'vitest'
 import { renderDockImportsMap } from '../plugins/server'
 
@@ -41,6 +41,16 @@ describe('renderDockImportsMap', () => {
         icon: 'ph:app-window-duotone',
         url: '/.plain/',
       },
+      {
+        type: 'json-render',
+        id: 'json-render-with-script',
+        title: 'Json Render With Script',
+        icon: 'ph:brackets-curly-duotone',
+        ui: {} as JsonRenderer,
+        clientScript: {
+          importFrom: 'my-plugin/json-render-script',
+        },
+      },
     ]
 
     const code = renderDockImportsMap(docks)
@@ -48,10 +58,11 @@ describe('renderDockImportsMap', () => {
     expect(code).toContain('["action:action-entry"]')
     expect(code).toContain('["iframe:iframe-with-script"]')
     expect(code).toContain('["custom-render:custom-render"]')
+    expect(code).toContain('["json-render:json-render-with-script"]')
     expect(code).not.toContain('["iframe:plain-iframe"]')
 
     const defaultImportCount = code.split('r["default"]').length - 1
-    expect(defaultImportCount).toBe(2)
+    expect(defaultImportCount).toBe(3)
     expect(code).toContain('r["renderPanel"]')
   })
 })

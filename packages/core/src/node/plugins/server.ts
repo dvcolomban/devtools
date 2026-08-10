@@ -25,6 +25,9 @@ export function renderDockImportsMap(docks: Iterable<DevToolsDockEntry>): string
     else if (dock.type === 'iframe' && dock.clientScript) {
       map.set(id, dock.clientScript)
     }
+    else if (dock.type === 'json-render' && dock.clientScript) {
+      map.set(id, dock.clientScript)
+    }
   }
   return [
     `export const importsMap = {`,
